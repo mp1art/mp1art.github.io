@@ -24,7 +24,7 @@ const MONO = "'DM Mono', monospace"
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const timeline = [
   {
-    year: "201-2015",
+    year: "2012-2015",
     title: "Apprenticeship · IT Management Assistant",
     detail: "Built my foundation in IT, business processes, project management and customer consulting.",
     accent: false,
@@ -698,7 +698,7 @@ export default function App() {
             {/* Contact links */}
             <div className="flex flex-col gap-5">
               <a
-                href="https://linkedin.com/in/meikpuchalski"
+                href="https://www.linkedin.com/in/meik-puchalski-939162363/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -1578,7 +1578,7 @@ export default function App() {
           style={{ borderTop: "1px solid rgba(247,246,243,0.08)" }}
         >
           <span style={{ fontFamily: MONO, fontSize: 11, color: "rgba(247,246,243,0.25)", letterSpacing: "0.1em" }}>
-            Meik Puchalski — UX/UI Designer — 2025
+            Meik Puchalski — UX/UI Designer — 2026
           </span>
           <div className="flex gap-6">
             {["LinkedIn", "Dribbble", "GitHub"].map((link) => (
