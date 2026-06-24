@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, ArrowDown, Plus, Minus } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
-import imgSoccer from "@/imports/Soccer.JPG"
-import imgCalisthenics from "@/imports/Calisthenics.jpg"
-import imgCalisthenics1 from "@/imports/Calisthenics-1.jpg"
+import imgFootballer from "@/imports/Soccer.JPG"
+import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
 import imgGamer from "@/imports/Gamer-1.jpg"
+import imgExplorer from "@/imports/Traveler.JPG"
 import imgProfile from "@/imports/Mp-teaser.png"
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -20,18 +20,22 @@ const DISPLAY = "'Big Shoulders Display', sans-serif"
 const BODY = "'DM Sans', sans-serif"
 const MONO = "'DM Mono', monospace"
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/meik-puchalski-939162363/"
+const EMAIL_ADDRESS = "m.puchalski@live.de"
+const EMAIL_URL = `mailto:${EMAIL_ADDRESS}`
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const timeline = [
   {
-    year: "2012-2015",
-    title: "Apprenticeship · IT Management Assistant",
-    detail: "Built my foundation in IT, business processes, project management and customer consulting.",
-    accent: false,
+    year: "2025",
+    title: "A new chapter begins.",
+    detail: "After 12 years with Mobilezone through multiple restructurings, this chapter ended.The next one is about focus, growth and building meaningful digital experiences.",
+    accent: true,
   },
   {
-    year: "2015-2016",
-    title: "Sales Associate · POS",
-    detail: "Worked directly with customers around smartphones, contracts and bundle offers.Learned how people make decisions when products feel complex.",
+    year: "2018–2025",
+    title: "UI/UX Designer",
+    detail: "Designed and optimised e-commerce experiences across Sparhandy, Deinhandy and High-Mobile.Worked on product pages, tariff flows, checkout processes, UX audits, Figma prototypes and design systems.",
     accent: false,
   },
   {
@@ -41,16 +45,16 @@ const timeline = [
     accent: false,
   },
   {
-    year: "2018–2025",
-    title: "UI/UX Designer",
-    detail: "Designed and optimised e-commerce experiences across Sparhandy, Deinhandy and High-Mobile.Worked on product pages, tariff flows, checkout processes, UX audits, Figma prototypes and design systems.",
+    year: "2015-2016",
+    title: "Sales Associate · POS",
+    detail: "Worked directly with customers around smartphones, contracts and bundle offers.Learned how people make decisions when products feel complex.",
     accent: false,
   },
   {
-    year: "2025",
-    title: "A new chapter begins.",
-    detail: "After 12 years with Mobilezone through multiple restructurings, this chapter ended.The next one is about focus, growth and building meaningful digital experiences.",
-    accent: true,
+    year: "2012-2015",
+    title: "Apprenticeship · IT Management Assistant",
+    detail: "Built my foundation in IT, business processes, project management and customer consulting.",
+    accent: false,
   },
 ]
 
@@ -261,6 +265,14 @@ const cardContent: Record<string, { subtitle: string; lines: string[]; mobileLin
     ],
   },
 }
+
+const aboutCards = [
+  { id: "footballer", imageName: "footballer", src: imgFootballer, alt: "Meik playing football", objectPos: "object-center", gridColumn: "1 / 2", gridRow: "1 / 3", delay: 0 },
+  { id: "calisthenics", imageName: "calisthenics", src: imgCalisthenics, alt: "Meik doing calisthenics", objectPos: "object-center", gridColumn: "2 / 4", gridRow: "1 / 2", delay: 80 },
+  { id: "designer", imageName: "designer", src: imgDesigner, alt: "Late night design session", objectPos: "object-center", gridColumn: "2 / 3", gridRow: "2 / 3", delay: 160 },
+  { id: "gamer", imageName: "gamer", src: imgGamer, alt: "Gaming setup", objectPos: "object-center", gridColumn: "3 / 4", gridRow: "2 / 3", delay: 240 },
+  { id: "explorer", imageName: "explorer", src: imgExplorer, alt: "Travel and exploration", objectPos: "object-center", gridColumn: "4 / 5", gridRow: "1 / 3", delay: 320 },
+] as const
 
 // ─── Reveal hook ──────────────────────────────────────────────────────────────
 function useReveal() {
@@ -697,7 +709,7 @@ export default function App() {
             {/* Contact links */}
             <div className="flex flex-col gap-5">
               <a
-                href="https://www.linkedin.com/in/meik-puchalski-939162363/"
+                href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 group"
@@ -723,7 +735,7 @@ export default function App() {
               <div style={{ height: 1, background: "rgba(13,13,13,0.08)" }} />
 
               <a
-                href="mailto:m.puchalski@live.de"
+                href={EMAIL_URL}
                 className="flex items-center gap-4 group"
                 style={{ textDecoration: "none", cursor: "none" }}
                 data-hoverable
@@ -738,7 +750,7 @@ export default function App() {
                 </div>
                 <div>
                   <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: ACCENT_TEXT, marginBottom: 2 }} className="uppercase">Email</p>
-                  <p style={{ color: DARK, fontSize: 15, fontWeight: 400 }}>m.puchalski@live.de</p>
+                  <p style={{ color: DARK, fontSize: 15, fontWeight: 400 }}>{EMAIL_ADDRESS}</p>
                 </div>
                 <ArrowUpRight size={16} className="ml-auto opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200" />
               </a>
@@ -1268,16 +1280,9 @@ export default function App() {
 
         {/* ── Mobile stacked cards ── */}
         {(() => {
-          const mobileCards = [
-            { id: "footballer", src: imgSoccer, alt: "Meik playing football", objectPos: "object-center" },
-            { id: "calisthenics", src: imgCalisthenics1, alt: "Calisthenics training", objectPos: "object-center" },
-            { id: "designer", src: imgDesigner, alt: "Design session", objectPos: "object-center" },
-            { id: "gamer", src: imgGamer, alt: "Gaming", objectPos: "object-center" },
-            { id: "explorer", src: imgCalisthenics, alt: "Exploring", objectPos: "object-bottom" },
-          ]
           return (
             <div className="md:hidden flex flex-col gap-px mb-16" style={{ border: `1px solid rgba(13,13,13,0.08)` }}>
-              {mobileCards.map((card) => {
+              {aboutCards.map((card) => {
                 const isOpen = expandedCard === card.id
                 const content = cardContent[card.id]
                 return (
@@ -1299,7 +1304,7 @@ export default function App() {
                         className="absolute bottom-4 left-4 uppercase"
                         style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: LIGHT, opacity: 0.8 }}
                       >
-                        {card.id}
+                        {card.imageName}
                       </span>
                       {/* Toggle icon */}
                       <div className="absolute top-4 right-4">
@@ -1322,7 +1327,7 @@ export default function App() {
                           className="uppercase mb-2"
                           style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: 40, lineHeight: 0.9, color: DARK }}
                         >
-                          {card.id}
+                          {card.imageName}
                         </p>
                         <p style={{ fontSize: 13, color: "#787870", fontStyle: "italic", fontWeight: 300, marginBottom: 16, lineHeight: 1.5 }}>
                           {content.subtitle}
@@ -1351,13 +1356,7 @@ export default function App() {
           }}
         >
           {/* Footballer — tall left */}
-          {([
-            { id: "footballer", gridColumn: "1 / 2", gridRow: "1 / 3", src: imgSoccer, alt: "Meik playing football", objectPos: "object-center", delay: 0 },
-            { id: "calisthenics", gridColumn: "2 / 4", gridRow: "1 / 2", src: imgCalisthenics1, alt: "Meik doing calisthenics", objectPos: "object-center", delay: 80 },
-            { id: "designer", gridColumn: "2 / 3", gridRow: "2 / 3", src: imgDesigner, alt: "Late night design session", objectPos: "object-center", delay: 160 },
-            { id: "gamer", gridColumn: "3 / 4", gridRow: "2 / 3", src: imgGamer, alt: "Gaming setup", objectPos: "object-center", delay: 240 },
-            { id: "explorer", gridColumn: "4 / 5", gridRow: "1 / 3", src: imgCalisthenics, alt: "Travel and exploration", objectPos: "object-bottom", delay: 320 },
-          ] as const).map((card) => {
+          {aboutCards.map((card) => {
             const isOpen = expandedCard === card.id
             const content = cardContent[card.id]
             return (
@@ -1385,7 +1384,7 @@ export default function App() {
                     className="absolute bottom-4 left-4 uppercase transition-opacity duration-300"
                     style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: LIGHT, opacity: isOpen ? 0 : 0.7 }}
                   >
-                    {card.id}
+                    {card.imageName}
                   </span>
 
                   {/* Hint — tap to explore */}
@@ -1418,7 +1417,7 @@ export default function App() {
                         className="uppercase mb-2"
                         style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: "clamp(22px, 3vw, 40px)", lineHeight: 1, color: DARK }}
                       >
-                        {card.id}
+                        {card.imageName}
                       </p>
                       <p
                         className="italic mb-4"
@@ -1526,8 +1525,9 @@ export default function App() {
 
           {/* CTAs */}
           <div className="mt-12 flex flex-col sm:flex-row gap-4">
-            <a
-              href="mailto:meik@puchalski.de"
+            <button
+              type="button"
+              onClick={() => setContactOpen(true)}
               className="inline-flex items-center gap-3 px-8 py-4 group"
               style={{
                 background: ACCENT,
@@ -1537,13 +1537,14 @@ export default function App() {
                 cursor: "none",
               }}
               data-hoverable
+              aria-haspopup="dialog"
             >
               <span>Let's create something together</span>
               <ArrowUpRight
                 size={18}
                 className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200"
               />
-            </a>
+            </button>
              <a
               href="/Lebenslauf-MP-English-New.pdf"
               target="_blank"
@@ -1580,10 +1581,15 @@ export default function App() {
             Meik Puchalski — UX/UI Designer — 2026
           </span>
           <div className="flex gap-6">
-            {["LinkedIn", "Dribbble", "GitHub"].map((link) => (
+            {[
+              { label: "LinkedIn", href: LINKEDIN_URL, external: true },
+              { label: "Email", href: EMAIL_URL, external: false },
+            ].map((link) => (
               <a
-                key={link}
-                href="#"
+                key={link.label}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 style={{
                   fontFamily: MONO,
                   fontSize: 11,
@@ -1598,7 +1604,7 @@ export default function App() {
                 }
                 data-hoverable
               >
-                {link}
+                {link.label}
               </a>
             ))}
           </div>
