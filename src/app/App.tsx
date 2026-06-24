@@ -5,7 +5,7 @@ import imgFootballer from "@/imports/Soccer.JPG"
 import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
 import imgGamer from "@/imports/Gamer-1.jpg"
-import imgExplorer from "@/imports/Traveler.JPG"
+import imgExplorer from "@/imports/Traveler.jpg"
 import imgProfile from "@/imports/Mp-teaser.png"
 
 // ─── Constants ────────────────────────────────────────────────────────────────
