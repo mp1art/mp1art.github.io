@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react"
+import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, ArrowDown, Plus, Minus } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
 import imgSoccer from "@/imports/Soccer.JPG"
