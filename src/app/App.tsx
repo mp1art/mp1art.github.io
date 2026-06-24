@@ -6,7 +6,6 @@ import imgCalisthenics from "@/imports/Calisthenics.jpg"
 import imgCalisthenics1 from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
 import imgGamer from "@/imports/Gamer-1.jpg"
-import imgTraveler from "@/imports/Traveler.JPG"
 import imgProfile from "@/imports/Mp-teaser.png"
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -1500,7 +1499,7 @@ export default function App() {
             { word: "curious.", color: ACCENT },
             { word: "learning.", color: LIGHT },
             { word: "building.", color: LIGHT },
-          ].map(({ word, color }, i) => (
+          ].map(({ word, color }) => (
             <p
               key={word}
               className="uppercase leading-none"
