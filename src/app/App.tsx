@@ -151,7 +151,7 @@ const projects: Project[] = [
       "Designed and optimised conversion-focused components such as tariff cards, deal modules, buy-box patterns and clearer product flows for brands like Sparhandy, DeinHandy, HIGH Mobile and Mobilezone.",
     learned:
       "Good CRO is not about pushing users harder. It is about removing the reasons they hesitate.",
-    link: "https://www.figma.com/design/9Mu3z2h2OfnuEogPRoEkcU/CV---MP?node-id=1218-50123&t=umZus3aTmzE0MUTI-1",
+    link: "https://www.figma.com/proto/9Mu3z2h2OfnuEogPRoEkcU/CV-MP?node-id=0-1&p=f&viewport=471%2C316%2C0.02&t=JKMfWWwfmr4DOXaa-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1218%3A50123&show-proto-sidebar=1",
     ctaLabel: "Explore in Resume",
   },
   {
@@ -182,7 +182,7 @@ const projects: Project[] = [
       "Contributed to a scalable design ecosystem with reusable components, consistent interaction patterns and conversion-focused experiences across product pages, checkout flows and promotional campaigns.",
     learned:
       "A design system isn't a library of components. It's a shared language that helps teams move faster while creating experiences users can trust.",
-    link: "https://www.figma.com/proto/9Mu3z2h2OfnuEogPRoEkcU/CV---MP?node-id=0-1&t=umZus3aTmzE0MUTI-1",
+    link: "https://www.figma.com/proto/9Mu3z2h2OfnuEogPRoEkcU/CV-MP?node-id=0-1&p=f&viewport=471%2C316%2C0.02&t=JKMfWWwfmr4DOXaa-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=937%3A74313&show-proto-sidebar=1",
     ctaLabel: "Explore in Resume",
   },
   {
@@ -198,7 +198,7 @@ const projects: Project[] = [
       "An evolving mobile-first platform designed to simplify session planning, player coordination and Americano tournament management for amateur padel communities.",
     learned:
       "The biggest opportunity wasn't court booking itself. It was reducing the coordination effort that happens before players ever step onto the court.",
-    link: "https://www.figma.com/design/9Mu3z2h2OfnuEogPRoEkcU/CV---MP?node-id=937-74167&t=umZus3aTmzE0MUTI-1",
+    link: "https://www.figma.com/proto/9Mu3z2h2OfnuEogPRoEkcU/CV---MP?node-id=937-74167&p=f&viewport=471%2C316%2C0.02&t=JKMfWWwfmr4DOXaa-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=937%3A74167&show-proto-sidebar=1",
     ctaLabel: "Explore in Resume",
   },
 ]
