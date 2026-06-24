@@ -1546,7 +1546,9 @@ export default function App() {
               />
             </a>
             <a
-              href="#"
+              href="/Lebenslauf-MP-English-New.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4"
               style={{
                 border: "1px solid rgba(247,246,243,0.15)",
