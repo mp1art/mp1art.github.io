@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, ArrowDown, Plus, Minus } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
+import PrematchCaseStudy from "@/app/projects/prematch/PrematchCaseStudy"
 import imgFootballer from "@/imports/Soccer.JPG"
 import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
@@ -107,7 +108,7 @@ const projects: Project[] = [
       "Redesigned the stats experience around three core pillars: Current Stats, Rankings and Achievements. Introduced clearer performance metrics, Team of the Week recognition, player comparisons and an XP-based achievement system.",
     learned:
       "Statistics become significantly more engaging when they provide context. Progression, comparison and recognition transform numbers into motivation.",
-    link: "https://www.figma.com/proto/a7inYKwm8qrtklnmbVo8TJ/Prematch-Challange?node-id=57-3349&t=IRbrnZX7MUoopD9F-1",
+    link: "/projects/prematch",
     password: "MP2016",
   },
   {
@@ -330,7 +331,7 @@ function Reveal({
 }
 
 // ─── App ──────────────────────────────────────────────────────────────────────
-export default function App() {
+function HomePage() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [activeProject, setActiveProject] = useState<number | null>(null)
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
@@ -1186,8 +1187,8 @@ export default function App() {
                     <div className="flex flex-col gap-3">
                       <a
                         href={proj.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={proj.link.startsWith("/") ? undefined : "_blank"}
+                        rel={proj.link.startsWith("/") ? undefined : "noopener noreferrer"}
                         className="inline-flex items-center gap-3 group"
                         style={{
                           fontFamily: DISPLAY,
@@ -1612,4 +1613,8 @@ export default function App() {
       </section>
     </div>
   )
+}
+
+export default function App() {
+  return window.location.pathname === "/projects/prematch" ? <PrematchCaseStudy /> : <HomePage />
 }
