@@ -1616,5 +1616,6 @@ function HomePage() {
 }
 
 export default function App() {
-  return window.location.pathname === "/projects/prematch" ? <PrematchCaseStudy /> : <HomePage />
+  const currentPath = window.location.pathname.replace(/\/$/, "")
+  return currentPath === "/projects/prematch" ? <PrematchCaseStudy /> : <HomePage />
 }
