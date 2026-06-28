@@ -6,6 +6,8 @@ import EditorialSplitNarrative from "./components/EditorialSplitNarrative"
 import { prematchSplitNarrativeSections } from "./components/EditorialSplitNarrativeContent"
 import EditorialGallery from "./components/EditorialGallery"
 import { prematchGalleryItems } from "./components/EditorialGalleryContent"
+import ProjectBreakdownAccordion from "./components/ProjectBreakdownAccordion"
+import { prematchBreakdownItems } from "./components/ProjectBreakdownAccordionContent"
 
 export default function PrematchPage() {
   return (
@@ -16,6 +18,7 @@ export default function PrematchPage() {
         <EditorialSplitNarrative content={section} key={section.eyebrow} />
       ))}
       <EditorialGallery items={prematchGalleryItems} />
+      <ProjectBreakdownAccordion items={prematchBreakdownItems} />
     </>
   )
 }

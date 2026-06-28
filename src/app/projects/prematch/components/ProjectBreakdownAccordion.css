@@ -1,0 +1,238 @@
+.project-breakdown {
+  min-height: 1086.25px;
+  width: 100%;
+  padding: 57px 0;
+  background: #f7f6f3;
+  color: #0d0d0d;
+  font-family: "DM Sans", sans-serif;
+}
+
+.project-breakdown__heading-wrap {
+  width: 100%;
+  padding: 0 57px;
+}
+
+.project-breakdown__heading {
+  width: 1050px;
+  max-width: 100%;
+  margin: 20px 0 0;
+  color: #0d0d0d;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-size: 130px;
+  font-weight: 900;
+  line-height: 117px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.project-breakdown__accordion {
+  width: 100%;
+  margin-top: 97px;
+  padding-top: 80px;
+}
+
+.project-breakdown__item {
+  width: 100%;
+  border-bottom: 1px solid rgba(13, 13, 13, 0.18);
+  transition: border-color 0.3s ease;
+}
+
+.project-breakdown__item:first-child {
+  border-top: 1px solid rgba(13, 13, 13, 0.18);
+}
+
+.project-breakdown__trigger {
+  display: flex;
+  width: 100%;
+  min-height: 172px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 40px 57px 41px;
+  border: 0;
+  background: transparent;
+  color: #0d0d0d;
+  text-align: left;
+  cursor: pointer;
+}
+
+.project-breakdown__trigger:hover .project-breakdown__title,
+.project-breakdown__trigger:focus-visible .project-breakdown__title,
+.project-breakdown__item.is-open .project-breakdown__title {
+  color: #ccc800;
+}
+
+.project-breakdown__summary {
+  display: flex;
+  width: min(582px, 48vw);
+  align-items: flex-start;
+  gap: 39px;
+}
+
+.project-breakdown__number {
+  display: inline-block;
+  min-width: 15px;
+  padding-top: 43px;
+  color: #787870;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.project-breakdown__title-group {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.project-breakdown__title {
+  color: #0d0d0d;
+  font-family: "Big Shoulders Display", sans-serif;
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-weight: 900;
+  line-height: 64px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.project-breakdown__meta {
+  display: flex;
+  width: auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.project-breakdown__pillnotes {
+  color: #787870;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.project-breakdown__icon {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(13, 13, 13, 0.15);
+  color: #0d0d0d;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.project-breakdown__item.is-open .project-breakdown__icon,
+.project-breakdown__trigger:hover .project-breakdown__icon,
+.project-breakdown__trigger:focus-visible .project-breakdown__icon {
+  border-color: #ccc800;
+  color: #ccc800;
+}
+
+.project-breakdown__panel {
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.project-breakdown__panel-inner {
+  width: 776px;
+  max-width: calc(100% - 114px);
+  margin-left: 57px;
+  padding: 0 0 49px;
+}
+
+.project-breakdown__pillnotes--panel {
+  display: none;
+}
+
+.project-breakdown__body {
+  margin: 0;
+  color: #0d0d0d;
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 27px;
+  letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .project-breakdown {
+    min-height: 964px;
+    padding: 58px 32px 57px;
+  }
+
+  .project-breakdown__heading-wrap {
+    padding: 0;
+  }
+
+  .project-breakdown__heading {
+    width: 314px;
+    margin-top: 20px;
+    font-size: 48px;
+    line-height: 43.5px;
+  }
+
+  .project-breakdown__accordion {
+    margin-top: 0;
+    padding-top: 80px;
+  }
+
+  .project-breakdown__trigger {
+    min-height: 121px;
+    gap: 16px;
+    padding: 32px 0 33px;
+  }
+
+  .project-breakdown__summary {
+    width: auto;
+    flex: 1 1 auto;
+    gap: 19px;
+  }
+
+  .project-breakdown__number {
+    padding-top: 12px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .project-breakdown__title {
+    font-size: 32px;
+    line-height: 28px;
+  }
+
+  .project-breakdown__pillnotes--desktop {
+    display: none;
+  }
+
+  .project-breakdown__meta {
+    width: 32px;
+    flex: 0 0 auto;
+  }
+
+  .project-breakdown__panel-inner {
+    width: 298px;
+    max-width: 100%;
+    margin-left: 16px;
+    padding: 0 0 16px;
+  }
+
+  .project-breakdown__pillnotes--panel {
+    display: block;
+    margin: 0 0 16px;
+    color: #787870;
+    font-size: 10px;
+    line-height: 17px;
+    letter-spacing: 0.12em;
+    white-space: normal;
+  }
+
+  .project-breakdown__body {
+    font-size: 16px;
+    line-height: 27px;
+  }
+}
