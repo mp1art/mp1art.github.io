@@ -5,6 +5,7 @@ import SiteContactModal from "@/app/components/site/SiteContactModal"
 import SiteContactSection from "@/app/components/site/SiteContactSection"
 import SiteHeader from "@/app/components/site/SiteHeader"
 import PrematchPage from "@/app/projects/prematch/PrematchPage"
+import WisoPage from "@/app/projects/wiso/WisoPage"
 import imgFootballer from "@/imports/Soccer.JPG"
 import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
@@ -1213,5 +1214,8 @@ function HomePage() {
 
 export default function App() {
   const currentPath = window.location.pathname.replace(/\/$/, "")
-  return currentPath === "/projects/prematch" ? <PrematchPage /> : <HomePage />
+  if (currentPath === "/projects/prematch") return <PrematchPage />
+  if (currentPath === "/projects/wiso") return <WisoPage />
+
+  return <HomePage />
 }

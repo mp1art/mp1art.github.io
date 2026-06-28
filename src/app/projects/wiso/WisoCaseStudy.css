@@ -1,0 +1,29 @@
+.wiso-page {
+  background: #f7f6f3;
+  color: #0d0d0d;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+.editorial-cover--wiso {
+  background: #b7b5b1;
+}
+
+.editorial-cover--wiso::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.56);
+  pointer-events: none;
+}
+
+.editorial-cover--wiso::after {
+  z-index: 1;
+  height: 58%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88), rgba(0, 0, 0, 0.2));
+}
+
+.editorial-cover--wiso .editorial-cover__content {
+  z-index: 2;
+}

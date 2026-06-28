@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "npm run typecheck && vite build && mkdir -p dist/projects/prematch && cp dist/index.html dist/projects/prematch/index.html",
+    "build": "npm run typecheck && vite build && mkdir -p dist/projects/prematch dist/projects/wiso && cp dist/index.html dist/projects/prematch/index.html && cp dist/index.html dist/projects/wiso/index.html",
     "dev": "vite",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit"

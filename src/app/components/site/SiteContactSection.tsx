@@ -15,18 +15,7 @@ const DISPLAY = "'Big Shoulders Display', sans-serif"
 export default function SiteContactSection({ onContactClick, variant = "light" }: SiteContactSectionProps) {
   const revealRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const isDarkVariant = variant === "dark"
-  const contactButtonStyle = isDarkVariant
-    ? {
-        background: "transparent",
-        border: `1px solid ${LIGHT}`,
-        color: LIGHT,
-      }
-    : {
-        background: ACCENT,
-        border: "1px solid transparent",
-        color: DARK,
-      }
+  void variant
 
   useEffect(() => {
     const element = revealRef.current
@@ -108,7 +97,9 @@ export default function SiteContactSection({ onContactClick, variant = "light" }
             onClick={onContactClick}
             className="inline-flex items-center gap-3 px-8 py-4 group"
             style={{
-              ...contactButtonStyle,
+              background: ACCENT,
+              border: "1px solid transparent",
+              color: DARK,
               fontWeight: 500,
               fontSize: 15,
               cursor: "none",

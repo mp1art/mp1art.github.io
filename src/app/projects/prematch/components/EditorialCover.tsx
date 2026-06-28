@@ -1,3 +1,4 @@
+import { ArrowDown, ArrowUpRight } from "lucide-react"
 import heroImage from "@/imports/heroimagep-prematch.png"
 import type { EditorialCoverContent } from "./EditorialCoverContent"
 import "./EditorialCover.css"
@@ -40,6 +41,26 @@ export default function EditorialCover({
               </div>
             ))}
           </dl>
+
+          {content.actions && (
+            <div className="editorial-cover__actions" aria-label="Project actions">
+              {content.actions.map((action) => {
+                const isSecondary = action.variant === "secondary"
+
+                return (
+                  <a
+                    className={`editorial-cover__action ${isSecondary ? "editorial-cover__action--secondary" : "editorial-cover__action--primary"}`}
+                    href={action.href}
+                    key={action.label}
+                    data-hoverable
+                  >
+                    <span>{action.label}</span>
+                    {isSecondary ? <ArrowDown size={17} aria-hidden="true" /> : <ArrowUpRight size={17} aria-hidden="true" />}
+                  </a>
+                )
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

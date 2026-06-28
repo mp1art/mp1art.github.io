@@ -3,11 +3,18 @@ export type EditorialCoverFact = {
   value: string
 }
 
+export type EditorialCoverAction = {
+  label: string
+  href: string
+  variant?: "primary" | "secondary"
+}
+
 export type EditorialCoverContent = {
   projectLabel: string
   headline: string[]
   intro: string
   facts: EditorialCoverFact[]
+  actions?: EditorialCoverAction[]
 }
 
 export const prematchCoverContent: EditorialCoverContent = {
