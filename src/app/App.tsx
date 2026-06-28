@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, ArrowDown, Plus, Minus } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
+import PrematchPage from "@/app/projects/prematch/PrematchPage"
 import imgFootballer from "@/imports/Soccer.JPG"
 import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
 import imgDesigner from "@/imports/Designer-1.jpg"
@@ -330,7 +331,7 @@ function Reveal({
 }
 
 // ─── App ──────────────────────────────────────────────────────────────────────
-export default function App() {
+function HomePage() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
   const [activeProject, setActiveProject] = useState<number | null>(null)
   const [expandedCard, setExpandedCard] = useState<string | null>(null)
@@ -1612,4 +1613,9 @@ export default function App() {
       </section>
     </div>
   )
+}
+
+export default function App() {
+  const currentPath = window.location.pathname.replace(/\/$/, "")
+  return currentPath === "/projects/prematch" ? <PrematchPage /> : <HomePage />
 }
