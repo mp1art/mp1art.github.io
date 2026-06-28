@@ -1,0 +1,66 @@
+.editorial-manifest {
+  display: flex;
+  min-height: 688px;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 57px;
+  background: #f7f6f3;
+  color: #0d0d0d;
+  font-family: "DM Sans", sans-serif;
+}
+
+.editorial-manifest__statement {
+  width: 800px;
+  max-width: 100%;
+  margin: 0;
+  color: #0d0d0d;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 82px;
+  letter-spacing: -1px;
+}
+
+.editorial-manifest__body {
+  display: flex;
+  width: 583px;
+  max-width: 100%;
+  flex-direction: column;
+  align-self: flex-end;
+  align-items: flex-end;
+  gap: 16px;
+  color: #0d0d0d;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 27px;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.editorial-manifest__body p {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .editorial-manifest {
+    min-height: 852px;
+    padding: 57px 16px;
+  }
+
+  .editorial-manifest__statement {
+    width: 289px;
+    font-size: 48px;
+    line-height: 54px;
+    letter-spacing: -1px;
+  }
+
+  .editorial-manifest__body {
+    width: 267px;
+    align-self: flex-start;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: left;
+  }
+}
