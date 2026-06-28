@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from "react"
 import { ArrowUpRight, ArrowDown, Plus, Minus } from "lucide-react"
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback"
+import SiteContactModal from "@/app/components/site/SiteContactModal"
+import SiteContactSection from "@/app/components/site/SiteContactSection"
+import SiteHeader from "@/app/components/site/SiteHeader"
 import PrematchPage from "@/app/projects/prematch/PrematchPage"
 import imgFootballer from "@/imports/Soccer.JPG"
 import imgCalisthenics from "@/imports/Calisthenics-1.jpg"
@@ -20,10 +23,6 @@ const LIGHT = "#F7F6F3"
 const DISPLAY = "'Big Shoulders Display', sans-serif"
 const BODY = "'DM Sans', sans-serif"
 const MONO = "'DM Mono', monospace"
-
-const LINKEDIN_URL = "https://www.linkedin.com/in/meik-puchalski-939162363/"
-const EMAIL_ADDRESS = "m.puchalski@live.de"
-const EMAIL_URL = `mailto:${EMAIL_ADDRESS}`
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const timeline = [
@@ -427,6 +426,15 @@ function HomePage() {
     }
   }, [updateHeroClip])
 
+  useEffect(() => {
+    if (!window.location.hash) return
+
+    const targetId = window.location.hash.slice(1)
+    window.setTimeout(() => {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" })
+    }, 0)
+  }, [])
+
   // Attach hover listeners for interactive elements
   useEffect(() => {
     const els = document.querySelectorAll("a, button, [data-hoverable]")
@@ -482,288 +490,16 @@ function HomePage() {
         </span>
       </div>
 
-      {/* ── Nav ── */}
-      {(() => {
-        const scrollTo = (id: string) => {
-          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-        }
-        const navLinks = [
-          { label: "My Story", id: "section-story" },
-          { label: "Drive",    id: "section-drive" },
-          { label: "Work",     id: "section-work"  },
-          { label: "About",    id: "section-about" },
-        ]
-        return (
-          <>
-            <nav
-              className="fixed top-0 left-0 right-0 z-50 px-8 md:px-16 py-5 flex items-center justify-between transition-all duration-500"
-              style={{
-                backdropFilter: navScrolled || menuOpen ? "blur(14px)" : "none",
-                borderBottom: navScrolled ? `1px solid rgba(13,13,13,0.08)` : "1px solid transparent",
-                background: navScrolled || menuOpen ? "rgba(247,246,243,0.97)" : "transparent",
-              }}
-            >
-              {/* Logo */}
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                style={{ fontFamily: MONO, fontSize: 12, letterSpacing: "0.22em", background: "none", border: "none", cursor: "none" }}
-                data-hoverable
-              >
-                <span
-                  className="uppercase transition-colors duration-300"
-                  style={{ color: DARK }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = ACCENT_TEXT)}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = DARK)}
-                >
-                  MP
-                </span>
-              </button>
+      <SiteHeader
+        activeSection={activeSection}
+        currentPage="home"
+        menuOpen={menuOpen}
+        navScrolled={navScrolled}
+        onContactClick={() => setContactOpen(true)}
+        setMenuOpen={setMenuOpen}
+      />
 
-              {/* Desktop center links */}
-              <div className="hidden md:flex items-center gap-8">
-                {navLinks.map(({ label, id }) => {
-                  const isActive = activeSection === id
-                  return (
-                    <button
-                      key={id}
-                      onClick={() => scrollTo(id)}
-                      style={{
-                        fontFamily: MONO, fontSize: 11, letterSpacing: "0.12em",
-                        background: "none", border: "none", cursor: "none",
-                        color: isActive ? DARK : "#9A9890",
-                        transition: "color 0.25s ease",
-                        position: "relative", paddingBottom: 2,
-                      }}
-                      className="uppercase"
-                      data-hoverable
-                      onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = DARK }}
-                      onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "#9A9890" }}
-                    >
-                      {label}
-                      <span style={{
-                        position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
-                        background: ACCENT,
-                        transform: isActive ? "scaleX(1)" : "scaleX(0)",
-                        transition: "transform 0.3s ease", transformOrigin: "left",
-                      }} />
-                    </button>
-                  )
-                })}
-              </div>
-
-              {/* Right side */}
-              <div className="flex items-center gap-4">
-                {/* Contact — always visible */}
-                <button
-                  onClick={() => setContactOpen(true)}
-                  className="border border-foreground px-5 py-2 hover:bg-foreground hover:text-background transition-all duration-300"
-                  style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", cursor: "none" }}
-                  data-hoverable
-                >
-                  Contact
-                </button>
-                {/* Hamburger — mobile only */}
-                <button
-                  className="md:hidden flex flex-col justify-center gap-[5px] w-8 h-8 items-center"
-                  onClick={() => setMenuOpen((v) => !v)}
-                  style={{ background: "none", border: "none", cursor: "none" }}
-                  aria-label="Menu"
-                  data-hoverable
-                >
-                  <span style={{ display: "block", width: 22, height: 1.5, background: DARK, transition: "transform 0.3s ease, opacity 0.3s ease", transform: menuOpen ? "translateY(6.5px) rotate(45deg)" : "none" }} />
-                  <span style={{ display: "block", width: 22, height: 1.5, background: DARK, transition: "opacity 0.3s ease", opacity: menuOpen ? 0 : 1 }} />
-                  <span style={{ display: "block", width: 22, height: 1.5, background: DARK, transition: "transform 0.3s ease, opacity 0.3s ease", transform: menuOpen ? "translateY(-6.5px) rotate(-45deg)" : "none" }} />
-                </button>
-              </div>
-            </nav>
-
-            {/* ── Mobile Menu Overlay ── */}
-            <div
-              className="fixed inset-0 z-[170] md:hidden flex flex-col"
-              style={{
-                background: LIGHT,
-                opacity: menuOpen ? 1 : 0,
-                transform: menuOpen ? "translateY(0)" : "translateY(-10px)",
-                transition: "opacity 0.3s ease, transform 0.3s ease",
-                pointerEvents: menuOpen ? "auto" : "none",
-              }}
-            >
-              {/* Top bar — mirrors the nav */}
-              <div
-                className="flex items-center justify-between px-8 py-5 shrink-0"
-                style={{ borderBottom: `1px solid rgba(13,13,13,0.08)` }}
-              >
-                {/* MP logo */}
-                <button
-                  onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setMenuOpen(false) }}
-                  style={{ fontFamily: MONO, fontSize: 12, letterSpacing: "0.22em", background: "none", border: "none", cursor: "none", color: DARK }}
-                  data-hoverable
-                >
-                  MP
-                </button>
-
-                {/* Contact */}
-                <button
-                  onClick={() => { setMenuOpen(false); setContactOpen(true) }}
-                  className="border border-foreground px-5 py-2"
-                  style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", cursor: "none", color: DARK }}
-                  data-hoverable
-                >
-                  Contact
-                </button>
-
-                {/* Close */}
-                <button
-                  onClick={() => setMenuOpen(false)}
-                  style={{ background: "none", border: "none", cursor: "none", color: DARK, width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center" }}
-                  aria-label="Close menu"
-                  data-hoverable
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
-                </button>
-              </div>
-
-              {/* Nav links */}
-              <div className="flex flex-col px-8 pt-10 pb-16 justify-between flex-1">
-                <nav className="flex flex-col gap-1">
-                  {navLinks.map(({ label, id }, i) => {
-                    const isActive = activeSection === id
-                    return (
-                      <button
-                        key={id}
-                        onClick={() => { scrollTo(id); setMenuOpen(false) }}
-                        style={{
-                          fontFamily: DISPLAY, fontWeight: 900, textAlign: "left",
-                          fontSize: "clamp(52px, 13vw, 88px)", lineHeight: 0.92,
-                          background: "none", border: "none", cursor: "none",
-                          color: isActive ? DARK : "#CCCCC6",
-                          transition: "color 0.25s ease",
-                          letterSpacing: "-0.01em",
-                          transitionDelay: menuOpen ? `${i * 50}ms` : "0ms",
-                        }}
-                        className="uppercase"
-                        data-hoverable
-                      >
-                        {label}
-                      </button>
-                    )
-                  })}
-                </nav>
-                <p style={{ fontFamily: MONO, fontSize: 11, color: "#AEACA6", letterSpacing: "0.1em" }} className="uppercase">
-                  Meik Puchalski — UX/UI Designer
-                </p>
-              </div>
-            </div>
-          </>
-        )
-      })()}
-
-      {/* ── Contact Modal ── */}
-      {contactOpen && (
-        <div
-          className="fixed inset-0 z-[200] flex items-center justify-center"
-          style={{
-            background: "rgba(13,13,13,0.55)",
-            backdropFilter: "blur(6px)",
-            animation: "fadeIn 250ms ease forwards",
-          }}
-          onClick={() => setContactOpen(false)}
-        >
-          <div
-            className="relative"
-            style={{
-              background: "#FAF8F4",
-              border: `1px solid rgba(13,13,13,0.12)`,
-              padding: "clamp(40px, 6vw, 72px)",
-              maxWidth: 520,
-              width: "90vw",
-              animation: "scaleIn 300ms cubic-bezier(0.16,1,0.3,1) forwards",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close */}
-            <button
-              onClick={() => setContactOpen(false)}
-              className="absolute top-6 right-6"
-              style={{ background: "none", border: "none", cursor: "none", color: "#9A9890" }}
-              data-hoverable
-              aria-label="Close"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-              </svg>
-            </button>
-
-            {/* Headline */}
-            <h2
-              className="uppercase mb-3"
-              style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: "clamp(40px, 7vw, 72px)", lineHeight: 0.9, color: DARK }}
-            >
-              Let's connect.
-            </h2>
-            <p style={{ color: "#787870", fontSize: 15, lineHeight: 1.7, fontWeight: 300, marginBottom: 48, maxWidth: 360 }}>
-              Whether it's design, product thinking, freelance work or a new opportunity — feel free to reach out.
-            </p>
-
-            {/* Contact links */}
-            <div className="flex flex-col gap-5">
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 group"
-                style={{ textDecoration: "none", cursor: "none" }}
-                data-hoverable
-              >
-                <div style={{ width: 40, height: 40, border: `1px solid rgba(13,13,13,0.12)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "background 0.2s ease, border-color 0.2s ease" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = DARK; (e.currentTarget as HTMLElement).style.borderColor = DARK }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(13,13,13,0.12)" }}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{ transition: "color 0.2s ease" }}>
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                    <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
-                  </svg>
-                </div>
-                <div>
-                  <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: ACCENT_TEXT, marginBottom: 2 }} className="uppercase">LinkedIn</p>
-                  <p style={{ color: DARK, fontSize: 15, fontWeight: 400 }}>LinkedIn Profile</p>
-                </div>
-                <ArrowUpRight size={16} className="ml-auto opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200" />
-              </a>
-
-              <div style={{ height: 1, background: "rgba(13,13,13,0.08)" }} />
-
-              <a
-                href={EMAIL_URL}
-                className="flex items-center gap-4 group"
-                style={{ textDecoration: "none", cursor: "none" }}
-                data-hoverable
-              >
-                <div style={{ width: 40, height: 40, border: `1px solid rgba(13,13,13,0.12)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "background 0.2s ease, border-color 0.2s ease" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = DARK; (e.currentTarget as HTMLElement).style.borderColor = DARK }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; (e.currentTarget as HTMLElement).style.borderColor = "rgba(13,13,13,0.12)" }}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                  </svg>
-                </div>
-                <div>
-                  <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: ACCENT_TEXT, marginBottom: 2 }} className="uppercase">Email</p>
-                  <p style={{ color: DARK, fontSize: 15, fontWeight: 400 }}>{EMAIL_ADDRESS}</p>
-                </div>
-                <ArrowUpRight size={16} className="ml-auto opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-200" />
-              </a>
-            </div>
-
-            {/* Footer */}
-            <p style={{ fontFamily: MONO, fontSize: 10, letterSpacing: "0.15em", color: "#AEACA6", marginTop: 40 }} className="uppercase">
-              Based in Cologne, Germany.
-            </p>
-          </div>
-        </div>
-      )}
+      {contactOpen && <SiteContactModal onClose={() => setContactOpen(false)} />}
 
       {/* ═══════════════════════════════════════════════
           SECTION 1 — HERO
@@ -1471,146 +1207,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          SECTION 6 — FINAL CTA
-      ═══════════════════════════════════════════════ */}
-      <section
-        className="min-h-screen flex flex-col justify-between py-24 px-8 md:px-16 border-t border-border"
-        style={{ background: DARK, color: LIGHT }}
-      >
-        <Reveal id="s6-top" className="flex-1 flex flex-col justify-center pt-16">
-          {/* Outlined "STILL" */}
-          <h2
-            className="uppercase leading-none mb-0"
-            style={{
-              fontFamily: DISPLAY,
-              fontWeight: 900,
-              fontSize: "clamp(64px, 14vw, 200px)",
-              WebkitTextStroke: "2px rgba(247,246,243,0.2)",
-              color: "transparent",
-              lineHeight: 0.88,
-            }}
-          >
-            STILL
-          </h2>
-
-          {/* Solid words with the last in accent */}
-          {[
-            { word: "curious.", color: ACCENT },
-            { word: "learning.", color: LIGHT },
-            { word: "building.", color: LIGHT },
-          ].map(({ word, color }) => (
-            <p
-              key={word}
-              className="uppercase leading-none"
-              style={{
-                fontFamily: DISPLAY,
-                fontWeight: 900,
-                fontSize: "clamp(64px, 14vw, 200px)",
-                color,
-                lineHeight: 0.92,
-              }}
-            >
-              {word}
-            </p>
-          ))}
-
-          <p
-            className="mt-16 max-w-xs"
-            style={{ color: "rgba(247,246,243,0.4)", fontSize: 17, lineHeight: 1.8, fontWeight: 300 }}
-          >
-            Thanks for taking the time
-            <br />
-            to get to know me.
-          </p>
-
-          {/* CTAs */}
-          <div className="mt-12 flex flex-col sm:flex-row gap-4">
-            <button
-              type="button"
-              onClick={() => setContactOpen(true)}
-              className="inline-flex items-center gap-3 px-8 py-4 group"
-              style={{
-                background: ACCENT,
-                color: DARK,
-                fontWeight: 500,
-                fontSize: 15,
-                cursor: "none",
-              }}
-              data-hoverable
-              aria-haspopup="dialog"
-            >
-              <span>Let's create something together</span>
-              <ArrowUpRight
-                size={18}
-                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200"
-              />
-            </button>
-             <a
-              href="/Lebenslauf-MP-English-New.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4"
-              style={{
-                border: "1px solid rgba(247,246,243,0.15)",
-                color: "rgba(247,246,243,0.5)",
-                fontSize: 15,
-                cursor: "none",
-                transition: "color 0.3s ease, border-color 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLElement).style.color = LIGHT
-                ;(e.currentTarget as HTMLElement).style.borderColor = "rgba(247,246,243,0.4)"
-              }}
-              onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLElement).style.color = "rgba(247,246,243,0.5)"
-                ;(e.currentTarget as HTMLElement).style.borderColor = "rgba(247,246,243,0.15)"
-              }}
-              data-hoverable
-            >
-              Download CV
-            </a>
-          </div>
-        </Reveal>
-
-        {/* Footer strip */}
-        <div
-          className="mt-24 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
-          style={{ borderTop: "1px solid rgba(247,246,243,0.08)" }}
-        >
-          <span style={{ fontFamily: MONO, fontSize: 11, color: "rgba(247,246,243,0.25)", letterSpacing: "0.1em" }}>
-            Meik Puchalski — UX/UI Designer — 2026
-          </span>
-          <div className="flex gap-6">
-            {[
-              { label: "LinkedIn", href: LINKEDIN_URL, external: true },
-              { label: "Email", href: EMAIL_URL, external: false },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 11,
-                  color: "rgba(247,246,243,0.25)",
-                  letterSpacing: "0.08em",
-                  cursor: "none",
-                  transition: "color 0.3s ease",
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = LIGHT)}
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLElement).style.color = "rgba(247,246,243,0.25)")
-                }
-                data-hoverable
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SiteContactSection onContactClick={() => setContactOpen(true)} />
     </div>
   )
 }
