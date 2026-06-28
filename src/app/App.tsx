@@ -107,8 +107,7 @@ const projects: Project[] = [
       "Redesigned the stats experience around three core pillars: Current Stats, Rankings and Achievements. Introduced clearer performance metrics, Team of the Week recognition, player comparisons and an XP-based achievement system.",
     learned:
       "Statistics become significantly more engaging when they provide context. Progression, comparison and recognition transform numbers into motivation.",
-    link: "https://www.figma.com/proto/a7inYKwm8qrtklnmbVo8TJ/Prematch-Challange?node-id=57-3349&t=IRbrnZX7MUoopD9F-1",
-    password: "MP2016",
+    link: "/projects/prematch",
   },
   {
     title: "Interactive Resume",
