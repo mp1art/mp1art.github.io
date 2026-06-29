@@ -3,7 +3,9 @@ import SiteContactModal from "@/app/components/site/SiteContactModal"
 import SiteHeader from "@/app/components/site/SiteHeader"
 import wisoHeroImage from "@/imports/Hero-Wiso.png"
 import EditorialCover from "../prematch/components/EditorialCover"
+import EditorialManifest from "../prematch/components/EditorialManifest"
 import { wisoCoverContent } from "./components/WisoCoverContent"
+import { wisoManifestContent } from "./components/WisoManifestContent"
 import "./WisoCaseStudy.css"
 
 export default function WisoPage() {
@@ -45,6 +47,7 @@ export default function WisoPage() {
         imageAlt="WISO MeinBuro invoicing redesign shown on a mobile phone"
         imageSrc={wisoHeroImage}
       />
+      <EditorialManifest content={wisoManifestContent} />
       <div id="case-study" aria-hidden="true" />
     </div>
   )
