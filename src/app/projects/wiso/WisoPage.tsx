@@ -4,8 +4,10 @@ import SiteHeader from "@/app/components/site/SiteHeader"
 import wisoHeroImage from "@/imports/Hero-Wiso.png"
 import EditorialCover from "../prematch/components/EditorialCover"
 import EditorialManifest from "../prematch/components/EditorialManifest"
+import EditorialSplitNarrative from "../prematch/components/EditorialSplitNarrative"
 import { wisoCoverContent } from "./components/WisoCoverContent"
 import { wisoManifestContent } from "./components/WisoManifestContent"
+import { wisoSplitNarrativeSections } from "./components/WisoSplitNarrativeContent"
 import "./WisoCaseStudy.css"
 
 export default function WisoPage() {
@@ -48,6 +50,9 @@ export default function WisoPage() {
         imageSrc={wisoHeroImage}
       />
       <EditorialManifest content={wisoManifestContent} />
+      {wisoSplitNarrativeSections.map((section) => (
+        <EditorialSplitNarrative content={section} key={section.eyebrow} />
+      ))}
       <div id="case-study" aria-hidden="true" />
     </div>
   )

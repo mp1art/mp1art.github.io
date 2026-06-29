@@ -27,3 +27,24 @@
 .editorial-cover--wiso .editorial-cover__content {
   z-index: 2;
 }
+
+@media (max-width: 767px) {
+  .wiso-page .editorial-split-narrative {
+    min-height: auto !important;
+  }
+
+  .wiso-page .editorial-split-narrative__image-wrap {
+    flex: 0 0 auto !important;
+    height: 0 !important;
+    padding-bottom: 78.2875% !important;
+    position: relative;
+  }
+
+  .wiso-page .editorial-split-narrative__image {
+    inset: 0;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: absolute;
+  }
+}
