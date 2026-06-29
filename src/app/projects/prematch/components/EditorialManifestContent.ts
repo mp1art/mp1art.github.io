@@ -4,7 +4,7 @@ export type EditorialManifestContent = {
 }
 
 export const prematchManifestContent: EditorialManifestContent = {
-  statement: "Turning statistics into motivation.",
+  statement: "Designing experiences players want to return to.",
   body: [
     "Prematch already provided player statistics.",
     "The real opportunity wasn't adding more numbers.",
